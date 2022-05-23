@@ -49,39 +49,35 @@ systemctl enable NetworkManager
 useradd -g wheel -m user1
 echo user1:21324 | chpasswd
 sed -i '85s/..//' /etc/sudoers
+user=user1 #<--insert name
 
 ### DWM SETUP ###
 printf '%s\n\n\n## STARTING DWM ##\n\n\n'
 sleep 2
 
-## EDIT
-##(1) pacman
-##(2) user: /home/(user1)/ - change user1
-
-# PACMAN
-pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot xorg-xrandr htop neofetch firefox
-printf '%s\n\n'
-
-# USER
-cp /etc/X11/xinit/xinitrc /home/user1/.xinitrc
-sed -i '51s/./#t/;52s/./#x/;53s/./#x/;54s/./#x/;55s/./#e/' /home/user1/.xinitrc
-echo '# execute' >> /home/user1/.xinitrc
-echo 'exec dwm' >> /home/user1/.xinitrc
-
-echo 'if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then' >> /home/user1/.bash_profile
-echo '        exec startx' >> /home/user1/.bash_profile
-echo 'fi' >> /home/user1/.bash_profile
-
-git clone https://git.suckless.org/dwm /home/user1/st
-printf '%s\n\n'
-git clone https://git.suckless.org/st /home/user1/dwm
+# PACMAN -> ECHO -> GIT -> PERMISSION
+pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot xorg-xrandr htop xwallpaper neofetch vivaldi
+#for dwm: libx11 libxinerama libxft libxcb
 printf '%s\n\n'
 sleep 1
-make clean install -C /home/user1/st
-printf '%s\n\n'
-make clean install -C /home/user1/dwm
 
-chown -R user1 /home/user1
-chgrp -R wheel /home/user1
+mkdir /home/$user/{.dev,downloads,.config}
+
+cp /etc/X11/xinit/xinitrc /home/$user/.xinitrc
+sed -i '51s/./#t/;52s/./#x/;53s/./#x/;54s/./#x/;55s/./#e/' /home/$user/.xinitrc
+echo '# execute' >> /home/$user/.xinitrc
+echo 'exec dwm' >> /home/$user/.xinitrc
+
+git clone https://git.suckless.org/dwm /home/$user/.config/st
+printf '%s\n\n'
+git clone https://git.suckless.org/st /home/$user/.config/dwm
+printf '%s\n\n'
+sleep 1
+make clean install -C /home/$user/.config/st
+printf '%s\n\n'
+make clean install -C /home/$user/.config/dwm
+
+chown -R user1 /home/$user
+chgrp -R wheel /home/$user
 
 printf '%s\n\n\n## DONE ##\n\n\n'
