@@ -55,27 +55,28 @@ user=user1 #<--insert name
 printf '%s\n\n\n## STARTING DWM ##\n\n\n'
 sleep 2
 
-# PACMAN -> ECHO -> GIT -> PERMISSION
+# PACMAN
 pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot xorg-xrandr htop xwallpaper neofetch vivaldi
 printf '%s\n\n'
 sleep 1
 
-mkdir /home/$user/{.dev,downloads,.config}
-
+# COPY
 cp /etc/X11/xinit/xinitrc /home/$user/.xinitrc
 sed -i '51s/./#t/;52s/./#x/;53s/./#x/;54s/./#x/;55s/./#e/' /home/$user/.xinitrc
 echo '# execute' >> /home/$user/.xinitrc
 echo 'exec dwm' >> /home/$user/.xinitrc
 
-git clone https://git.suckless.org/dwm /home/$user/.config/st
+# GIT
+git clone https://git.suckless.org/dwm /home/$user/st
 printf '%s\n\n'
-git clone https://git.suckless.org/st /home/$user/.config/dwm
+git clone https://git.suckless.org/st /home/$user/dwm
 printf '%s\n\n'
 sleep 1
-make clean install -C /home/$user/.config/st
+make clean install -C /home/$user/st
 printf '%s\n\n'
-make clean install -C /home/$user/.config/dwm
+make clean install -C /home/$user/dwm
 
+# PERMISSION
 chown -R user1 /home/$user
 chgrp -R wheel /home/$user
 
