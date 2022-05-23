@@ -57,7 +57,6 @@ sleep 2
 
 # PACMAN -> ECHO -> GIT -> PERMISSION
 pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot xorg-xrandr htop xwallpaper neofetch vivaldi
-#for dwm: libx11 libxinerama libxft libxcb
 printf '%s\n\n'
 sleep 1
 
