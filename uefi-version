@@ -61,7 +61,6 @@ sleep 2
 # PACMAN
 pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot xorg-xrandr htop neofetch firefox
 printf '%s\n\n'
-sleep 1
 
 # USER
 cp /etc/X11/xinit/xinitrc /home/user1/.xinitrc
