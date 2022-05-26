@@ -39,13 +39,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # SYSTEMCTL
 systemctl enable NetworkManager
-#systemctl enable firewalld
-#systemctl enable sshd
-#systemctl enable reflector.service
-#systemctl enable reflector.timer
-#systemctl enable tlp
-#systemctl enable acpid
-#systemctl enable bluetooth
 
 # USER
 useradd -g wheel -m user1
@@ -58,7 +51,7 @@ printf '%s\n\n\n## STARTING DWM ##\n\n\n'
 sleep 2
 
 # PACMAN
-pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot xorg-xrandr htop xwallpaper neofetch vivaldi
+pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot xorg-xrandr htop neofetch firefox
 printf '%s\n\n'
 sleep 1
 
