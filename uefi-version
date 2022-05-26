@@ -1,6 +1,6 @@
 #!/bin/bash
 ### FOR USERS WHO ALREADY KNOW START UP BASICS SUCH AS:
-### partions -> file system -> mount -> pacstrap -> arch-chroot
+### partions -> file system -> mount -> pacstrap -> genfstab -> arch-chroot
 
 ### ARCH SETUP ###
 printf '%s\n\n\n## STARTING ARCH ##\n\n\n'
