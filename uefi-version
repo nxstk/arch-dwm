@@ -1,4 +1,6 @@
 #!/bin/bash
+### FOR USERS WHO ALREADY KNOW START UP BASICS SUCH AS:
+### partions -> file system -> mount -> pacstrap -> arch-chroot
 
 ### ARCH SETUP ###
 printf '%s\n\n\n## STARTING ARCH ##\n\n\n'
@@ -25,7 +27,7 @@ echo "127.0.1.1 machine1.localdomain machine1" >> /etc/hosts
 echo root:32435 | chpasswd
 
 # PACMAN
-pacman -S --noconfirm linux linux-firmware grub efibootmgr networkmanager
+pacman -S --noconfirm base base-devel linux linux-firmware grub efibootmgr networkmanager
 
 grub-install --target=x86_64-efi  --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -65,6 +67,10 @@ cp /etc/X11/xinit/xinitrc /home/$user/.xinitrc
 sed -i '51s/./#t/;52s/./#x/;53s/./#x/;54s/./#x/;55s/./#e/' /home/$user/.xinitrc
 echo '# execute' >> /home/$user/.xinitrc
 echo 'exec dwm' >> /home/$user/.xinitrc
+# DWM AUTOSTART VIA BASH_PROFILE
+echo 'if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1]; then' >> /home/$user/.bash_profile
+echo 'exec startx' >> /home/$user/.bash_profile
+echo 'fi' >> /home/$user/.bash_profile
 
 # GIT
 git clone https://git.suckless.org/dwm /home/$user/st
