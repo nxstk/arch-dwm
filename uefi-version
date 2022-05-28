@@ -7,12 +7,14 @@ printf '%s\n\n\n## STARTING ARCH ##\n\n\n'
 sleep 2
 
 ## EDIT
-##(1) root
-##(2) pacman
-##(3) gpu
-##(4) systemctl
-##(5) user
+##(1) timezone/language/localhost
+##(2) root
+##(3) pacman
+##(4) gpu
+##(5) systemctl
+##(6) user
 
+# TIMEZONE - LANGUAGE - HOST
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock --systohc
 timedatectl set-ntp true
